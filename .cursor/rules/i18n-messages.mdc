@@ -1,0 +1,15 @@
+---
+description: Internationalization (next-intl) — keep en/fr/de/es in sync for every UI change
+alwaysApply: true
+---
+
+# UI translations (next-intl)
+
+This app uses **next-intl** with locale files in `messages/` (`en`, `fr`, `de`, `es`). English is the source of truth; other locales merge over `en` at runtime (`src/i18n/request.ts`), but **every user-visible string must exist in all four JSON files** with proper translations — not English placeholders in `fr`/`de`/`es`.
+
+## When adding or changing UI
+
+1. **Never hard-code user-visible text** in components/pages. Use `useTranslations("namespace")` or `getTranslations` on the server.
+2. **Add the key to `messages/en.json` first**.
+3. **Add the same key path to `messages/fr.json`, `messages/de.json`, and `messages/es.json`**.
+4. **Run `npm run i18n:check`** before finishing.
